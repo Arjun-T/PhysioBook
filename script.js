@@ -66,7 +66,9 @@ document.querySelector("#book form").addEventListener("submit", async (e) => {
 });
 
 // Physio registration form
-document.querySelector("#register form").addEventListener("submit", async (e) => {
+const physioForm = document.querySelector("#register form");
+
+physioForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const form = e.target;
@@ -88,6 +90,6 @@ document.querySelector("#register form").addEventListener("submit", async (e) =>
     goHome();
   } catch (err) {
     alert("Error saving registration");
-    console.error(err);
+    console.error("Physio save error:", err);
   }
 });
