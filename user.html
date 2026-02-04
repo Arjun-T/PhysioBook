@@ -2,16 +2,37 @@
 <html>
 <head>
   <title>User Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
-<body>
+<body class="dashboard">
 
-<h2>Available Physiotherapists</h2>
-<div id="physioList" class="grid"></div>
+<header class="topbar">
+  <h2>PhysioConnect</h2>
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" onclick="showTab('physios')">Physios Near Me</button>
+  <button class="tab" onclick="showTab('bookings')">My Bookings</button>
+</nav>
+
+<main class="content">
+
+  <section id="physios" class="tab-content">
+    <div id="physioList" class="list"></div>
+  </section>
+
+  <section id="bookings" class="tab-content" style="display:none;">
+    <div id="bookingList" class="list"></div>
+  </section>
+
+</main>
 
 <script src="firebase.js"></script>
 <script src="user.js"></script>

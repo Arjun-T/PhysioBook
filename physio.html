@@ -2,16 +2,56 @@
 <html>
 <head>
   <title>Physio Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
-<body>
+<body class="dashboard">
 
-<h2>My Dashboard</h2>
-<p id="stats"></p>
+<header class="topbar">
+  <h2>PhysioConnect</h2>
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" onclick="showTab('availability')">Availability</button>
+  <button class="tab" onclick="showTab('requests')">Requests</button>
+  <button class="tab" onclick="showTab('earnings')">Earnings</button>
+</nav>
+
+<main class="content">
+
+<section id="availability" class="tab-content">
+  <div class="card large">
+    <h3>Set Availability</h3>
+    <input type="date" id="availDate">
+    <div class="slot-grid">
+      <button onclick="toggleSlot(this)">09:00</button>
+      <button onclick="toggleSlot(this)">10:00</button>
+      <button onclick="toggleSlot(this)">11:00</button>
+      <button onclick="toggleSlot(this)">14:00</button>
+      <button onclick="toggleSlot(this)">15:00</button>
+    </div>
+    <button class="primary-btn" onclick="saveAvailability()">Save</button>
+  </div>
+</section>
+
+<section id="requests" class="tab-content" style="display:none;">
+  <div id="requestList" class="list"></div>
+</section>
+
+<section id="earnings" class="tab-content" style="display:none;">
+  <div class="card large">
+    <h3>Total Earnings</h3>
+    <h1 id="totalEarn">₹0</h1>
+  </div>
+</section>
+
+</main>
 
 <script src="firebase.js"></script>
 <script src="physio.js"></script>
