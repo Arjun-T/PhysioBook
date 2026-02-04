@@ -1,32 +1,114 @@
-body.centered {
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body.landing {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #5f6cff, #7b8cff);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #2b7cff, #6aa9ff);
+  color: #111;
 }
 
-.auth-card {
-  max-width: 350px;
+.container {
   text-align: center;
+  padding: 30px;
+  max-width: 900px;
+  width: 100%;
 }
 
-.auth-card h1 {
-  margin-bottom: 5px;
+.logo {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
 }
 
-.muted {
-  color: #666;
+.tagline {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #eaeaff;
 }
 
-.small {
-  font-size: 12px;
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
 }
 
-.secondary {
-  background: #444;
+.choice-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 35px 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-input {
-  margin-top: 10px;
+.choice-card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.choice-card p {
+  color: #555;
+  font-size: 15px;
+}
+
+.choice-card:hover {
+  transform: translateY(-8px);
+}
+
+.choice-card.dark {
+  background: #1f2937;
+  color: #fff;
+}
+
+.choice-card.dark p {
+  color: #cbd5e1;
+}
+
+/* AUTH FORM */
+
+.auth-form {
+  max-width: 400px;
+  margin: 30px auto 0;
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #5f6cff;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #4b57e0;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #777;
 }
