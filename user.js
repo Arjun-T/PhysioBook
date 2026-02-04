@@ -22,23 +22,40 @@ async function loadPhysios() {
   const list = document.getElementById("physioList");
   list.innerHTML = "";
 
+  const today = new Date().toISOString().split("T")[0];
+
   const snap = await db.collection("physios").get();
-  snap.forEach(doc => {
+
+  for (const doc of snap.docs) {
     const p = doc.data();
+
+    let slotsText = "No slots today";
+    const availDoc = await db.collection("availability").doc(doc.id).get();
+
+    if (availDoc.exists && availDoc.data()[today]) {
+      slotsText = availDoc.data()[today].join(", ");
+    }
+
     const card = document.createElement("div");
     card.className = "card large";
 
     card.innerHTML = `
       <h3>${p.name}</h3>
-      <p>${p.specialization}</p>
-      <p>Fee: ₹${p.price}</p>
-      <button class="primary-btn">Book</button>
+      <p class="muted">${p.specialization}</p>
+
+      <div class="info-row">
+        <span>💰 ₹${p.price}</span>
+        <span>⏱ ${slotsText}</span>
+      </div>
+
+      <button class="primary-btn">Book Appointment</button>
     `;
 
     card.querySelector("button").onclick = () => bookPhysio(doc.id);
     list.appendChild(card);
-  });
+  }
 }
+
 
 async function bookPhysio(physioId) {
   const modal = document.createElement("div");
