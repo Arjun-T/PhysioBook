@@ -6,20 +6,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="home">
+<body class="landing">
 
-  <div class="home-card">
-    <h1>PhysioConnect</h1>
-    <p>Book or provide physiotherapy sessions easily</p>
+  <div class="landing-container">
+    <h1>🧠 PhysioConnect</h1>
+    <p class="subtitle">Professional physiotherapy, when you need it</p>
 
-    <button class="primary-btn" onclick="location.href='user.html'">
-      I Need Therapy
-    </button>
+    <div class="role-cards">
+      <div class="role-card user" onclick="goAuth('user')">
+        <h2>🧍‍♂️ I Need Therapy</h2>
+        <p>Find nearby physiotherapists and book sessions</p>
+      </div>
 
-    <button class="secondary-btn" onclick="location.href='physio.html'">
-      I Do Therapy
-    </button>
+      <div class="role-card physio" onclick="goAuth('physio')">
+        <h2>🧑‍⚕️ I Do Therapy</h2>
+        <p>Manage bookings, availability & earnings</p>
+      </div>
+    </div>
   </div>
+
+<script>
+  function goAuth(role) {
+    location.href = `auth.html?role=${role}`;
+  }
+</script>
 
 </body>
 </html>

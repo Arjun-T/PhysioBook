@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login | PhysioConnect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+</head>
+<body class="auth">
+
+  <div class="auth-card">
+    <h2 id="title">Login</h2>
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button class="primary-btn" onclick="login()">Login</button>
+    <button class="secondary-btn" onclick="register()">Create Account</button>
+  </div>
+
+<script src="firebase.js"></script>
+<script>
+  const role = new URLSearchParams(location.search).get("role");
+
+  function login() {
+    auth.signInWithEmailAndPassword(
+      email.value,
+      password.value
+    ).then(() => redirect());
+  }
+
+  function register() {
+    auth.createUserWithEmailAndPassword(
+      email.value,
+      password.value
+    ).then(() => redirect());
+  }
+
+  function redirect() {
+    location.href = role === "physio" ? "physio.html" : "user.html";
+  }
+</script>
+
+</body>
+</html>
