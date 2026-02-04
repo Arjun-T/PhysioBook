@@ -1,32 +1,51 @@
+let selectedRole = null;
+
+function selectRole(role) {
+  selectedRole = role;
+  document.getElementById("roleSelect").style.display = "none";
+  document.getElementById("authForm").style.display = "block";
+}
+
+// Auto-redirect if already logged in
+auth.onAuthStateChanged(async (user) => {
+  if (!user) return;
+
+  const doc = await db.collection("users").doc(user.uid).get();
+  if (!doc.exists) return;
+
+  const role = doc.data().role;
+  redirectToProfile(role);
+});
+
 document.getElementById("authForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = nameInput.value;
-  const email = emailInput.value;
-  const password = passwordInput.value;
-  const role = roleSelect.value;
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   try {
-    const cred = await auth.createUserWithEmailAndPassword(email, password);
-    const uid = cred.user.uid;
+    // Try login
+    const cred = await auth.signInWithEmailAndPassword(email, password);
+    const userDoc = await db.collection("users").doc(cred.user.uid).get();
+    redirectToProfile(userDoc.data().role);
 
-    await db.collection("users").doc(uid).set({
+  } catch {
+    // If login fails → register
+    const cred = await auth.createUserWithEmailAndPassword(email, password);
+
+    await db.collection("users").doc(cred.user.uid).set({
       name,
       email,
-      role
+      role: selectedRole,
+      createdAt: new Date()
     });
 
-    if (role === "user") location.href = "user.html";
-    else location.href = "physio.html";
-
-  } catch (err) {
-    // If already exists → login
-    const cred = await auth.signInWithEmailAndPassword(email, password);
-    const uid = cred.user.uid;
-
-    const doc = await db.collection("users").doc(uid).get();
-    const role = doc.data().role;
-
-    location.href = role === "user" ? "user.html" : "physio.html";
+    redirectToProfile(selectedRole);
   }
 });
+
+function redirectToProfile(role) {
+  if (role === "user") location.href = "user.html";
+  else location.href = "physio.html";
+}

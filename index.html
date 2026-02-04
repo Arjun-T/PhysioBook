@@ -1,31 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login | PhysioConnect</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>PhysioConnect</title>
+  <link rel="stylesheet" href="styles.css" />
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
-<body>
+<body class="centered">
 
-<h2 style="text-align:center">PhysioConnect</h2>
+  <div class="card auth-card">
+    <h1>PhysioConnect</h1>
+    <p class="muted">Physiotherapy, simplified.</p>
 
-<form class="card" id="authForm">
-  <input type="text" placeholder="Name" id="name" required />
-  <input type="email" placeholder="Email" id="email" required />
-  <input type="password" placeholder="Password" id="password" required />
+    <!-- Role selection -->
+    <div id="roleSelect">
+      <button class="btn" onclick="selectRole('user')">
+        I need therapy
+      </button>
+      <button class="btn secondary" onclick="selectRole('physio')">
+        I do therapy
+      </button>
+    </div>
 
-  <select id="role">
-    <option value="user">End User</option>
-    <option value="physio">Physiotherapist</option>
-  </select>
+    <!-- Login / Register form -->
+    <form id="authForm" style="display:none">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
 
-  <button class="btn">Register / Login</button>
-</form>
+      <button class="btn">Continue</button>
+      <p class="muted small">New users will be registered automatically</p>
+    </form>
+  </div>
 
-<script src="firebase.js"></script>
-<script src="auth.js"></script>
+  <script src="firebase.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>

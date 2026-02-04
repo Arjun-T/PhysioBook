@@ -1,18 +1,32 @@
-body { font-family: Arial; background:#f5f7fa; }
-.card {
-  background:white;
-  padding:20px;
-  margin:15px;
-  border-radius:8px;
+body.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #2b7cff, #6aa9ff);
 }
-.btn {
-  background:#2b7cff;
-  color:white;
-  padding:10px;
-  border:none;
-  width:100%;
+
+.auth-card {
+  max-width: 350px;
+  text-align: center;
 }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+
+.auth-card h1 {
+  margin-bottom: 5px;
+}
+
+.muted {
+  color: #666;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.secondary {
+  background: #444;
+}
+
+input {
+  margin-top: 10px;
 }
