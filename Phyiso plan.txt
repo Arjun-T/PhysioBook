@@ -1,0 +1,45 @@
+Requirements : 
+Programming	- JavaScript basics
+Backend	- Node.js + Express
+Database - PostgreSQL basics
+Mobile - Flutter or React Native
+APIs - REST APIs
+Auth - JWT authentication
+Git - Version control
+
+Hosting :
+Backend: Railway / Render
+Database: Supabase or Railway
+File uploads: Cloudinary
+Notifications: Firebase Cloud Messaging
+Maps: Google Maps API
+Payments (India): Razorpay
+
+
+📱 Mobile App (Flutter)
+   ↕ REST APIs
+🖥 Backend (Node.js)
+   ↕
+🗄 Database (PostgreSQL)
+
+
+
+Cost Monthly : 
+Backend hosting	₹0–1500
+Database	₹0–1000
+Firebase	Free
+Google Maps	Free tier
+Razorpay	Commission per txn
+Cloudinary	Free tier
+Domain	₹800/year
+
+
+Android (Play Store)
+One-time fee: ₹2,000
+Build AAB from Flutter
+Upload
+App review: 3–7 days
+
+iOS (later)
+₹8,000/year
+Same Flutter app
